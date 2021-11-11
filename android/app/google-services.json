@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "317320105088",
+    "firebase_url": "https://smart-home-a2edf-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "smart-home-a2edf",
+    "storage_bucket": "smart-home-a2edf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317320105088:android:1c60a33b758a57ec19aa65",
+        "android_client_info": {
+          "package_name": "com.example.smart_home"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "317320105088-b97jo94eh8fidbqrj084c5a64la5hjsk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCa1CCUb7mOpgEdBYa1jXDI8iB8Up3q5M4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "317320105088-b97jo94eh8fidbqrj084c5a64la5hjsk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
