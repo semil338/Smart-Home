@@ -32,19 +32,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // int _counter = 0;
+  int _counter = 0;
 
   Future<void> _incrementCounter() async {
     // setState(() {
     //   _counter++;
     // });
-    try {
-      UserCredential userCredential =
-          await FirebaseAuth.instance.signInAnonymously();
-      debugPrint(userCredential.user!.uid);
-    } catch (e) {
-      debugPrint(e.toString());
-    }
+    // try {
+    //   UserCredential userCredential =
+    //       await FirebaseAuth.instance.signInAnonymously();
+    //   debugPrint(userCredential.user!.uid);
+    // } catch (e) {
+    //   debugPrint(e.toString());
+    // }
   }
 
   @override
