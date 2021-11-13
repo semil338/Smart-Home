@@ -1,5 +1,8 @@
+import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
@@ -32,19 +35,39 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  final databaseReference = FirebaseDatabase.instance.reference();
+  List<Notification> notificationList = [];
+  StreamSubscription<Event>? updates, removed;
 
-  Future<void> _incrementCounter() async {
-    // setState(() {
-    //   _counter++;
-    // });
-    // try {
-    //   UserCredential userCredential =
-    //       await FirebaseAuth.instance.signInAnonymously();
-    //   debugPrint(userCredential.user!.uid);
-    // } catch (e) {
-    //   debugPrint(e.toString());
-    // }
+  @override
+  void initState() {
+    super.initState();
+    readData();
+  }
+
+  @override
+  void dispose() {
+    updates!.cancel();
+    removed!.cancel();
+    super.dispose();
+  }
+
+  void readData() {
+    updates = databaseReference.child('Admin').onChildAdded.listen((data) {
+      notificationList.add(Notification.fromFireBase(data.snapshot));
+      setState(() {});
+    });
+    removed = databaseReference.child('Admin').onChildRemoved.listen((data) {
+      notificationList.removeAt(0);
+      setState(() {});
+    });
+  }
+
+  void _createData() {
+    databaseReference
+        .child("Admin")
+        .child("Admin-1")
+        .set({'name': 'Semil Kheda', 'description': 'Team Lead'}).asStream();
   }
 
   @override
@@ -57,22 +80,33 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              // '$_counter',
-              "0",
-              style: Theme.of(context).textTheme.headline4,
-            ),
+            Text(notificationList.length.toString()),
+            Expanded(
+              child: FirebaseAnimatedList(
+                query: databaseReference.child('Admin'),
+                itemBuilder: (context, snapshot, animation, index) {
+                  return Text(snapshot.value['name']);
+                },
+              ),
+            )
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: _createData,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
     );
+  }
+}
+
+class Notification {
+  String? name;
+  String? user;
+
+  Notification.fromFireBase(DataSnapshot snapshot) {
+    name = snapshot.value["name"] ?? 'Unknown user';
+    user = snapshot.value["user"] ?? '';
   }
 }
