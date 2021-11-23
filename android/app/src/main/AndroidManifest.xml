@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.smart_home">
    <application
-        android:label="smart_home"
+        android:label="Smart Home"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
