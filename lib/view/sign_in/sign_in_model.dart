@@ -17,8 +17,6 @@ class SignInModel extends ChangeNotifier {
   });
 
   final AuthBase auth;
-  // String email;
-  // String password;
   bool isLoading;
   bool autoValidate;
   bool? boxValue;

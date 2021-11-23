@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_home/view/sign_up/sign_up_model.dart';
-import 'package:smart_home/widgets/text_field.dart';
 import 'package:smart_home/widgets/widgets.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -29,7 +28,7 @@ class SignUpPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            buildForm(context, model),
+                            _buildForm(context, model),
                             _buildButtons(context, model),
                           ],
                         ),
@@ -46,7 +45,7 @@ class SignUpPage extends StatelessWidget {
     );
   }
 
-  Widget buildForm(BuildContext context, SignUpModel model) {
+  Widget _buildForm(BuildContext context, SignUpModel model) {
     return Form(
       key: model.formKey,
       // ignore: deprecated_member_use
@@ -59,9 +58,9 @@ class SignUpPage extends StatelessWidget {
           const SizedBox(height: 30),
           _buildNameField(model),
           const SizedBox(height: 20),
-          buildEmailField(model),
+          buildEmailField(model, "Email"),
           const SizedBox(height: 20),
-          buildPasswordField(model, context),
+          buildPasswordField(model, context, "Password"),
           const SizedBox(height: 30),
           buildButton(model, context, "Sign up"),
         ],

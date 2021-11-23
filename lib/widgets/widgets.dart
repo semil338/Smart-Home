@@ -42,7 +42,8 @@ SignInButton buildButton(var model, BuildContext context, String text) {
   );
 }
 
-TextFormField buildPasswordField(var model, BuildContext context) {
+TextFormField buildPasswordField(
+    var model, BuildContext context, String hintText) {
   return TextFormField(
     onEditingComplete: () => model.submit(context),
     focusNode: model.passwordFocusNode,
@@ -50,7 +51,7 @@ TextFormField buildPasswordField(var model, BuildContext context) {
     validator: validatePassword,
     obscureText: model.hidePassword,
     decoration: InputDecoration(
-      hintText: "Password",
+      hintText: hintText,
       suffixIcon: IconButton(
         icon: model.showIcon(),
         onPressed: () => model.updateWith(hidePassword: !model.hidePassword),
@@ -68,11 +69,11 @@ TextFormField buildPasswordField(var model, BuildContext context) {
   );
 }
 
-CustomTextField buildEmailField(var model) {
+CustomTextField buildEmailField(var model, String hintText) {
   return CustomTextField(
     editingComplete: () => model.emailEditingComplete,
     focusNode: model.emailFocusNode,
     controller: model.emailController,
-    hintText: "Email",
+    hintText: hintText,
   );
 }

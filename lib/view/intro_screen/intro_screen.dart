@@ -54,7 +54,7 @@ class _IntroScreenState extends State<IntroScreen> {
             size: Size.square(5),
             activeColor: fontColor,
           ),
-          animationDuration: 500,
+          // animationDuration: 500,
           curve: Curves.fastOutSlowIn,
           showSkipButton: true,
           showNextButton: true,
@@ -133,9 +133,10 @@ class _IntroScreenState extends State<IntroScreen> {
   }
 
   TextStyle _style() {
-    return const TextStyle(
+    return TextStyle(
       color: Colors.white,
       fontWeight: FontWeight.bold,
+      fontFamily: GoogleFonts.ubuntu().fontFamily,
     );
   }
 

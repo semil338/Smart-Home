@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_home/view/sign_in/forget_password.dart';
 import 'package:smart_home/view/sign_in/sign_in_model.dart';
-import 'package:smart_home/widgets/text_field.dart';
 import 'package:smart_home/widgets/widgets.dart';
 
 class SignIn extends StatefulWidget {
@@ -65,9 +64,9 @@ class _SignInState extends State<SignIn> {
           const SizedBox(height: 19),
           showText("Log In"),
           const SizedBox(height: 30),
-          buildEmailField(model),
+          buildEmailField(model, "Enter your Email"),
           const SizedBox(height: 20),
-          buildPasswordField(model, context),
+          buildPasswordField(model, context, "Enter your Password"),
           const SizedBox(height: 10),
           _buildCheckBox(model, context),
           const SizedBox(height: 30),
@@ -101,15 +100,6 @@ class _SignInState extends State<SignIn> {
     );
   }
 
-  SignInButton _buildButton(SignInModel model, BuildContext context) {
-    return SignInButton(
-      text: "Log in",
-      onPressed: () => model.submit(context),
-      color: fontColor,
-      fontSize: 1.5,
-    );
-  }
-
   Row _buildCheckBox(SignInModel model, BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -139,62 +129,6 @@ class _SignInState extends State<SignIn> {
           ),
         ),
       ],
-    );
-  }
-
-  Container _buildText() {
-    return Container(
-      alignment: Alignment.topLeft,
-      child: Text(
-        "Log In",
-        textAlign: TextAlign.left,
-        style: style(fontSize: 32, weight: FontWeight.bold),
-      ),
-    );
-  }
-
-  Widget _buildEmailTextField(SignInModel model) {
-    return CustomTextField(
-      editingComplete: () => model.emailEditingComplete(context),
-      focusNode: model.emailFocusNode,
-      controller: model.emailController,
-      hintText: "Enter your Email",
-    );
-  }
-
-  Widget _buildPasswordTextField(SignInModel model) {
-    return TextFormField(
-      onEditingComplete: () => model.submit(context),
-      focusNode: model.passwordFocusNode,
-      controller: model.passController,
-      validator: validatePassword,
-      obscureText: model.hidePassword,
-      decoration: InputDecoration(
-        hintText: "Enter your Password",
-        suffixIcon: IconButton(
-          icon: model.showIcon(),
-          onPressed: () => model.updateWith(hidePassword: !model.hidePassword),
-          color: fontColor,
-        ),
-        prefixIcon: const Icon(
-          Icons.lock,
-          color: fontColor,
-        ),
-        enabledBorder: enabledBorder,
-        focusedBorder: focusBorder,
-        errorBorder: errorBorder,
-        focusedErrorBorder: errorBorder,
-      ),
-    );
-  }
-
-  Opacity _showLoading(SignInModel model) {
-    return Opacity(
-      opacity: model.isLoading ? 1.0 : 0,
-      child: const Center(
-          child: CircularProgressIndicator(
-        color: fontColor,
-      )),
     );
   }
 }
