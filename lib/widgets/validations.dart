@@ -18,6 +18,17 @@ String? validatePassword(String? value) {
   return 'Password must be upto 8 characters';
 }
 
+String? validateName2(String? value) {
+  String pattern = r"^([A-Za-z0-9\s]){3,}$";
+  RegExp regExp = RegExp(pattern);
+  if (value!.isEmpty) {
+    return 'Please enter name';
+  } else if (!regExp.hasMatch(value.toString())) {
+    return 'Please enter valid name';
+  }
+  return null;
+}
+
 String? validateName(String? value) {
   String pattern = r"^\s*([A-Za-z]{4,}([\.,] |[-']| ))+[A-Za-z]+\.?\s*$";
   RegExp regExp = RegExp(pattern);

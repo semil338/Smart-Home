@@ -56,8 +56,9 @@ class _SignInState extends State<SignIn> {
   Widget _buildForm(BuildContext context, SignInModel model) {
     return Form(
       key: model.formKey,
-      // ignore: deprecated_member_use
-      autovalidate: model.autoValidate,
+      autovalidateMode: model.autoValidate
+          ? AutovalidateMode.always
+          : AutovalidateMode.disabled,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

@@ -48,8 +48,9 @@ class SignUpPage extends StatelessWidget {
   Widget _buildForm(BuildContext context, SignUpModel model) {
     return Form(
       key: model.formKey,
-      // ignore: deprecated_member_use
-      autovalidate: model.autoValidate,
+      autovalidateMode: model.autoValidate
+          ? AutovalidateMode.always
+          : AutovalidateMode.disabled,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

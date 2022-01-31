@@ -1,65 +1,100 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-// abstract class Database {
-//   Future<void> setData(Task task);
-//   Stream<List<Task?>> readData();
-//   Future<void> deleteData(Task task);
-// }
+import 'package:smart_home/models/category.dart';
+import 'package:smart_home/models/devices.dart';
+import 'package:smart_home/models/rooms.dart';
+import 'package:smart_home/models/users.dart';
 
 abstract class Database {
-  Stream<DocumentSnapshot<Map<String, dynamic>?>?> readPersonalData(String uid);
-  Future<void> addPersonalData(
-      {required String uId,
-      required String name,
-      required String email,
-     });
+  Stream<List<Users>?> getDataOfUsers();
+  Stream<List<SubCategory>?> getDevices(String id);
+  Stream<List<Category>?> getCategory();
+  Stream<Users?> getUser(String id);
+  Stream<List<Room>?> getRooms(String path);
+  Future<void> addPersonalData({
+    required String uId,
+    required String name,
+    required String email,
+  });
+  Future<void> addImage({
+    required String uId,
+    required String url,
+  });
 }
 
-// String jobId() => DateTime.now().toIso8601String();
-
-// class FirestoreDatabase implements Database {
-//   FirestoreDatabase({required this.uid});
-//   final String uid;
-
-//   final firestore = FirebaseFirestore.instance;
-
-//   @override
-//   Future<void> setData(Task task) async {
-//     final reference = firestore.doc("user/$uid/tasks/${task.taskId}/");
-
-//     await reference.set(task.toMap());
-//   }
-
-//   @override
-//   Future<void> deleteData(Task task) async {
-//     await firestore.doc("user/$uid/tasks/${task.taskId}/").delete();
-//   }
-
-//   @override
-//   Stream<List<Task?>> readData() {
-//     final reference = firestore.collection("user/$uid/tasks");
-//     final snapshots = reference.snapshots();
-//     return snapshots.map((snapshot) => snapshot.docs.map((snapshot) {
-//           final data = snapshot.data();
-//           // ignore: unnecessary_null_comparison
-//           return data != null
-//               // return Task.fromMap(data, snapshot.id);
-//               ? Task(
-//                   title: data["title"],
-//                   taskId: snapshot.id,
-//                 )
-//               : null;
-//         }).toList());
-//   }
-// }
-
-class PersonalDatabase implements Database {
+class FirestoreDatabase implements Database {
   final firestore = FirebaseFirestore.instance;
 
   @override
-  Stream<DocumentSnapshot<Map<String, dynamic>?>?> readPersonalData(
-      String uid) {
-    return firestore.collection("user").doc(uid).snapshots();
+  Stream<List<Users>?> getDataOfUsers() {
+    final query = firestore.collection("user").snapshots();
+
+    return query.map((snapshot) {
+      if (snapshot.size != 0) {
+        final result = snapshot.docs
+            .map((snapshots) => Users.fromMap(snapshots.data(), snapshots.id))
+            .toList();
+        return result;
+      } else {
+        return null;
+      }
+    });
+  }
+
+  @override
+  Stream<Users?> getUser(String id) {
+    final query = firestore.collection("user").doc(id).snapshots();
+
+    return query.map((event) => Users.fromMap(event.data(), event.id));
+  }
+
+  @override
+  Stream<List<SubCategory>?> getDevices(String id) {
+    final query = firestore.collection("category/$id/subCategory").snapshots();
+
+    return query.map((snapshot) {
+      if (snapshot.size != 0) {
+        final result = snapshot.docs
+            .map((snapshots) =>
+                SubCategory.fromMap(snapshots.data(), snapshots.id))
+            .toList();
+        return result;
+      } else {
+        return null;
+      }
+    });
+  }
+
+  @override
+  Stream<List<Category>?> getCategory() {
+    final query = firestore.collection("category").snapshots();
+
+    return query.map((snapshot) {
+      if (snapshot.size != 0) {
+        final result = snapshot.docs
+            .map(
+                (snapshots) => Category.fromMap(snapshots.data(), snapshots.id))
+            .toList();
+        return result;
+      } else {
+        return null;
+      }
+    });
+  }
+
+  @override
+  Stream<List<Room>?> getRooms(String path) {
+    final query = firestore.collection(path).snapshots();
+
+    return query.map((snapshot) {
+      if (snapshot.size != 0) {
+        final result = snapshot.docs
+            .map((snapshots) => Room.fromMap(snapshots.data(), snapshots.id))
+            .toList();
+        return result;
+      } else {
+        return null;
+      }
+    });
   }
 
   @override
@@ -71,6 +106,16 @@ class PersonalDatabase implements Database {
     await firestore.doc("user/$uId/").set({
       "name": name,
       "email": email,
+    });
+  }
+
+  @override
+  Future<void> addImage({
+    required String url,
+    required String uId,
+  }) async {
+    await firestore.doc("user/$uId/").update({
+      "photoURL": url,
     });
   }
 }

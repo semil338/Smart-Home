@@ -64,8 +64,8 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   _buildForm(BuildContext context) {
     return Form(
       key: _formKey,
-      // ignore: deprecated_member_use
-      autovalidate: _autoValidate,
+      autovalidateMode:
+          _autoValidate ? AutovalidateMode.always : AutovalidateMode.disabled,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

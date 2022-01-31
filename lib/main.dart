@@ -1,11 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_home/landing.dart';
 import 'package:smart_home/services/auth.dart';
 import 'package:smart_home/services/database.dart';
+import 'package:smart_home/services/realtime.dart';
 import 'package:smart_home/view/intro_screen/intro_screen.dart';
+import 'package:sizer/sizer.dart';
 
 int? isViewed;
 Future<void> main() async {
@@ -24,15 +27,19 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         Provider<AuthBase>(create: (context) => Auth()),
-        Provider<Database>(create: (context) => PersonalDatabase()),
+        Provider<Database>(create: (context) => FirestoreDatabase()),
+        Provider<Realtime>(create: (context) => RealtimeDatabase()),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: "Smart Home",
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
+      child: Sizer(
+        builder: (context, orientation, deviceType) => MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: "Smart Home",
+          theme: ThemeData(
+            fontFamily: GoogleFonts.montserrat().fontFamily,
+            primarySwatch: Colors.blue,
+          ),
+          home: isViewed != 0 ? const IntroScreen() : const LandingPage(),
         ),
-        home: isViewed != 0 ? const IntroScreen() : const LandingPage(),
       ),
     );
   }

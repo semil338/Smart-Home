@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:smart_home/services/auth.dart';
 import 'package:smart_home/widgets/show_alert_dialog.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePageSignOut extends StatelessWidget {
+  const HomePageSignOut({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

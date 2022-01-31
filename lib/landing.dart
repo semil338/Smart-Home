@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:smart_home/view/home/bottom_navbar/home_bottom_bar.dart';
 import 'package:smart_home/services/auth.dart';
-import 'package:smart_home/view/home/home.dart';
+//import 'package:smart_home/view/home/home.dart';
 import 'package:smart_home/view/sign_in/sign_in.dart';
 import 'package:smart_home/view/sign_in/sign_in_model.dart';
 
@@ -28,7 +29,7 @@ class LandingPage extends StatelessWidget {
             //   create: (context) => FirestoreDatabase(uid: user.uid),
             //   child: const HomePage(),
             // );
-            return const HomePage();
+            return const HomeBottomBar();
           }
         }
         return const Scaffold(
