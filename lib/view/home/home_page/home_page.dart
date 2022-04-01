@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
@@ -10,7 +11,6 @@ import 'package:smart_home/services/auth.dart';
 import 'package:smart_home/services/database.dart';
 import 'package:smart_home/services/realtime.dart';
 import 'package:smart_home/view/home/home_page/room_detail.dart';
-import 'package:smart_home/view/home/notification/notification.dart';
 import 'package:smart_home/widgets/widgets.dart';
 
 class HomePage extends StatefulWidget {
@@ -35,12 +35,18 @@ class _HomePageState extends State<HomePage> {
               stream: db.getUser(id),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircleAvatar(
-                    backgroundColor: Color(0xFFecf5fb),
-                    child: Icon(
-                      Icons.account_circle,
-                      size: 40,
-                      color: fontColor,
+                  return const SizedBox(
+                    height: 40,
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: CircleAvatar(
+                        backgroundColor: Color(0xFFecf5fb),
+                        child: Icon(
+                          Icons.account_circle,
+                          size: 40,
+                          color: fontColor,
+                        ),
+                      ),
                     ),
                   );
                 } else if (snapshot.connectionState == ConnectionState.active) {
@@ -65,36 +71,33 @@ class _HomePageState extends State<HomePage> {
                     ),
                   );
                 } else {
-                  return const CircleAvatar(
-                    backgroundColor: Color(0xFFecf5fb),
-                    child: Icon(
-                      Icons.account_circle,
-                      size: 40,
-                      color: fontColor,
+                  return const SizedBox(
+                    height: 40,
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: CircleAvatar(
+                        backgroundColor: Color(0xFFecf5fb),
+                        child: Icon(
+                          Icons.account_circle,
+                          size: 40,
+                          color: fontColor,
+                        ),
+                      ),
                     ),
                   );
                 }
               }),
         ],
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const Notifications()),
-            );
+        leading: IconButton(
+          onPressed: () {
+            ZoomDrawer.of(context)!.toggle();
           },
-          child: const Icon(
-            Icons.menu,
-            color: Colors.black,
-          ),
+          icon: const Icon(Icons.menu),
+          color: Colors.black,
         ),
-        // title: const Text(
-        //   'Smart Home',
-        //   style: TextStyle(color: Colors.black),
-        // ),
       ),
-      backgroundColor: const Color(0xFFecf5fb),
-      //backgroundColor: Colors.black.withOpacity(0.1),
+      // backgroundColor: const Color(0xFFecf5fb),
+      backgroundColor: bgColor,
       body: Column(
         children: <Widget>[
           showUserName(db),
@@ -249,9 +252,6 @@ class _HomePageState extends State<HomePage> {
                     );
                   });
             } else if (snapshot.connectionState == ConnectionState.waiting) {
-              // return const Center(
-              //   child: CircularProgressIndicator(),
-              // );
               return ListView.builder(
                   itemCount: 4,
                   itemBuilder: (context, index) {
@@ -265,7 +265,6 @@ class _HomePageState extends State<HomePage> {
                         child: Shimmer.fromColors(
                           baseColor: Colors.grey[400]!,
                           highlightColor: Colors.grey[100]!,
-                          // period: Duration(seconds: 2),
                           child: Container(
                             padding: const EdgeInsets.all(8),
                             height: MediaQuery.of(context).size.height * 0.20,

@@ -15,24 +15,30 @@ Future<dynamic> showAlertDialog(
       content: Text(content),
       actions: [
         if (cancelActionText != null)
-          TextButton(
-            // style: ButtonStyle(
-            //     backgroundColor: MaterialStateProperty.all(
-            //         const Color.fromRGBO(55, 59, 94, 1))),
-            onPressed: () => Navigator.of(context).pop(false),
-            child: Text(
-              cancelActionText,
-              style: const TextStyle(color: Color.fromRGBO(55, 59, 94, 1)),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextButton(
+              // style: ButtonStyle(
+              //     backgroundColor: MaterialStateProperty.all(
+              //         const Color.fromRGBO(55, 59, 94, 1))),
+              onPressed: () => Navigator.of(context).pop(false),
+              child: Text(
+                cancelActionText,
+                style: const TextStyle(color: Color.fromRGBO(55, 59, 94, 1)),
+              ),
             ),
           ),
-        ElevatedButton(
-          style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(
-                  const Color.fromRGBO(55, 59, 94, 1))),
-          onPressed: () => Navigator.of(context).pop(true),
-          child: Text(
-            defaultActionText,
-            style: const TextStyle(color: Colors.white),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ElevatedButton(
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(
+                    const Color.fromRGBO(55, 59, 94, 1))),
+            onPressed: () => Navigator.of(context).pop(true),
+            child: Text(
+              defaultActionText,
+              style: const TextStyle(color: Colors.white),
+            ),
           ),
         )
       ],

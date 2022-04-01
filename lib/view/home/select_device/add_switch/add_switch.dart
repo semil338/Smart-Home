@@ -52,7 +52,7 @@ class _AddSwitchState extends State<AddSwitch> {
     final db = Provider.of<Database>(context, listen: false);
 
     return Scaffold(
-      backgroundColor: const Color(0xFFecf5fb),
+      backgroundColor: bgColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,

@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 import 'package:smart_home/view/sign_up/sign_up_model.dart';
 import 'package:smart_home/widgets/widgets.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
 
   @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  ImageProvider logo = const AssetImage("assets/images/icon.png");
+  ImageProvider bgimg = const AssetImage("assets/images/bg-7.jpg");
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return /*Scaffold(
       backgroundColor: bgColor,
       body: Consumer<SignUpModel>(
         builder: (context, model, _) => SingleChildScrollView(
@@ -17,20 +26,85 @@ class SignUpPage extends StatelessWidget {
                 BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
             child: Stack(
               children: [
-                Opacity(
-                  opacity: model.isLoading ? 0.4 : 1,
-                  child: AbsorbPointer(
-                    absorbing: model.isLoading,
-                    child: SafeArea(
-                      child: Padding(
-                        padding: const EdgeInsets.all(25.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            _buildForm(context, model),
-                            _buildButtons(context, model),
-                          ],
+                Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          // filterQuality: FilterQuality.high,
+                          image: bgimg,
+                          fit: BoxFit.cover,
+                          opacity: 0.9)),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 50),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ShaderMask(
+                        blendMode: ui.BlendMode.srcIn,
+                        shaderCallback: (bounds) => ui.Gradient.linear(
+                            Offset(4.0, 24.0),
+                            Offset(24.0, 4.0),
+                            [Colors.blue.shade900, Colors.blue.shade300]),
+                        child: Icon(
+                          MdiIcons.homeAutomation,
+                          size: 55,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Wrap(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Smart",
+                                style: TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue.shade900,
+                                    letterSpacing: 2),
+                              ),
+                              Text(
+                                "User",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.indigo.shade400,
+                                    letterSpacing: 2),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 100),
+                  child: Opacity(
+                    opacity: model.isLoading ? 0.4 : 1,
+                    child: AbsorbPointer(
+                      absorbing: model.isLoading,
+                      child: SafeArea(
+                        child: Container(
+                          padding: EdgeInsets.all(25),
+                          decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.8),
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(60),
+                                  topRight: Radius.circular(60))),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              _buildForm(context, model),
+                              _buildButtons(context, model),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -40,6 +114,166 @@ class SignUpPage extends StatelessWidget {
               ],
             ),
           ),
+        ),
+      ),
+    );*/
+        //       Scaffold(
+        //     body: Consumer<SignUpModel>(
+        //       builder: (context, model, _) => SingleChildScrollView(
+        //           child: ConstrainedBox(
+        //         constraints:
+        //             BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
+        //         child: Stack(
+        //           children: [
+        //             Container(
+        //               height: double.infinity,
+        //               width: double.infinity,
+        //               decoration: BoxDecoration(
+        //                   image: DecorationImage(
+        //                 // filterQuality: FilterQuality.high,
+        //                 image: NetworkImage(
+        //                     "https://images.unsplash.com/photo-1584280795027-321f4d68e77b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"),
+        //                 fit: BoxFit.cover,
+        //               )),
+        //             ),
+        //             Container(
+        //               width: 350,
+        //               height: 200,
+        //               decoration: BoxDecoration(image: DecorationImage(image: logo)),
+        //             ),
+        //             Padding(
+        //               padding: const EdgeInsets.only(top: 120),
+        //               child: Opacity(
+        //                   opacity: model.isLoading ? 0.4 : 1,
+        //                   child: AbsorbPointer(
+        //                       absorbing: model.isLoading,
+        //                       child: SafeArea(
+        //                         // padding: const EdgeInsets.all(25.0),
+        //                         child: Container(
+        //                           padding: EdgeInsets.all(25),
+        //                           decoration: BoxDecoration(
+        //                               color: Colors.white.withOpacity(0.8),
+        //                               borderRadius: BorderRadius.only(
+        //                                   topLeft: Radius.circular(60),
+        //                                   topRight: Radius.circular(60))),
+        //                           child: Column(
+        //                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //                             crossAxisAlignment: CrossAxisAlignment.stretch,
+        //                             children: [
+        //                               _buildForm(context, model),
+        //                               _buildButtons(context, model),
+        //                             ],
+        //                           ),
+        //                         ),
+        //                       ))),
+        //             ),
+        //             showLoading(model),
+        //           ],
+        //         ),
+        //       )),
+        //     ),
+        //   );
+        // }
+        Scaffold(
+      backgroundColor: bgColor,
+      body: Consumer<SignUpModel>(
+        builder: (context, model, _) {
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints:
+                  BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
+              child: Stack(
+                children: [
+                  bodyImage(context),
+                  bodyContent(model, context),
+                  showLoading(model),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget bodyImage(BuildContext context) {
+    return Opacity(
+      opacity: 0.4,
+      child: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/bg-1.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget bodyContent(SignUpModel model, BuildContext context) {
+    return Opacity(
+      opacity: model.isLoading ? 0.4 : 1,
+      child: AbsorbPointer(
+        absorbing: model.isLoading,
+        child: Column(
+          children: [
+            headerBox(context),
+            formContainer(context, model),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget formContainer(BuildContext context, SignUpModel model) {
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.75,
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.6),
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(60),
+          )),
+      child: Padding(
+        padding: const EdgeInsets.all(25.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            _buildForm(context, model),
+            _buildButtons(context, model),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget headerBox(BuildContext context) {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.25,
+      width: MediaQuery.of(context).size.width,
+      child: Stack(
+        alignment: AlignmentDirectional.center,
+        children: [
+          Container(
+            padding: const EdgeInsets.only(top: 10),
+            height: MediaQuery.of(context).size.height * 0.2,
+            width: MediaQuery.of(context).size.width * 0.6,
+            child: bodyImage2(context),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget bodyImage2(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.2,
+      width: MediaQuery.of(context).size.width * 0.6,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/images/icon.png"),
+          fit: BoxFit.cover,
         ),
       ),
     );
@@ -55,15 +289,23 @@ class SignUpPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const SizedBox(height: 19),
-          showText("Sign up"),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              showText("Sign up"),
+            ],
+          ),
           const SizedBox(height: 30),
           _buildNameField(model),
           const SizedBox(height: 20),
           buildEmailField(model, "Email"),
           const SizedBox(height: 20),
           buildPasswordField(model, context, "Password"),
-          const SizedBox(height: 30),
+          const SizedBox(height: 20),
           buildButton(model, context, "Sign up"),
+          const SizedBox(
+            height: 5,
+          )
         ],
       ),
     );

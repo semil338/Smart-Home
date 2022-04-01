@@ -28,7 +28,12 @@ class SwitchDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     nameController.text = name;
-    String val = value == "1" ? "On" : "Off";
+    String? val;
+    if (type == "Button") {
+      val = value == "1" ? "On" : "Off";
+    } else {
+      val = value != "0" ? value : "0";
+    }
     final rb = Provider.of<Realtime>(context, listen: false);
 
     return Scaffold(

@@ -14,10 +14,19 @@ abstract class Database {
     required String uId,
     required String name,
     required String email,
+    required String? token,
   });
   Future<void> addImage({
     required String uId,
     required String url,
+  });
+  Future<void> removeImage({
+    required String uId,
+  });
+  Future<void> updateProfile({
+    required String uId,
+    required String name,
+    required String email,
   });
 }
 
@@ -102,10 +111,12 @@ class FirestoreDatabase implements Database {
     required String uId,
     required String name,
     required String email,
+    required String? token,
   }) async {
     await firestore.doc("user/$uId/").set({
       "name": name,
       "email": email,
+      "token": token,
     });
   }
 
@@ -116,6 +127,27 @@ class FirestoreDatabase implements Database {
   }) async {
     await firestore.doc("user/$uId/").update({
       "photoURL": url,
+    });
+  }
+
+  @override
+  Future<void> removeImage({
+    required String uId,
+  }) async {
+    await firestore.doc("user/$uId/").update({
+      "photoURL": "",
+    });
+  }
+
+  @override
+  Future<void> updateProfile({
+    required String uId,
+    required String name,
+    required String email,
+  }) async {
+    await firestore.doc("user/$uId/").update({
+      "name": name,
+      "email": email,
     });
   }
 }

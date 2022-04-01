@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_home/services/auth.dart';
@@ -67,15 +68,19 @@ class SignUpModel extends ChangeNotifier {
       updateWith(isLoading: true);
 
       try {
+        final msg = FirebaseMessaging.instance;
+        final token = await msg.getToken();
+        debugPrint("Token is : $token");
         await auth
             .createAccountWithEmailAndPassword(
                 emailController.text, passController.text)
-            .then((value) {
+            .then((value) async {
           final database = Provider.of<Database>(context, listen: false);
           database.addPersonalData(
             uId: value!.uid,
             name: nameController.text,
             email: emailController.text,
+            token: token,
           );
         });
 

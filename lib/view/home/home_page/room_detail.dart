@@ -150,10 +150,8 @@ class RoomDetail extends StatelessWidget {
                         ));
                       },
                       child: Card(
-                        // color: bgColor,
-                        // shadowColor: Colors.white,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(40)),
+                            borderRadius: BorderRadius.circular(20)),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -192,26 +190,15 @@ class RoomDetail extends StatelessWidget {
                                                 _updateValue(value, rb, key);
                                               },
                                             ),
-                                            // child: Switch.adaptive(
-                                            //   activeColor:
-                                            //       Colors.orange.shade300,
-                                            //   trackColor:
-                                            //       MaterialStateProperty.all(
-                                            //           Colors.grey),
-                                            //   thumbColor:
-                                            //       MaterialStateProperty.all(
-                                            //           Colors.white),
-                                            //   value:
-                                            //       value == '1' ? true : false,
-                                            //   onChanged: (value) {
-                                            //     _updateValue(value, rb, key);
-                                            //   },
-                                            // ),
                                           ),
                                         )
-                                      : Padding(
-                                          padding: const EdgeInsets.all(18.0),
-                                          child: Text(value),
+                                      : Expanded(
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 8.0, right: 20, bottom: 8),
+                                            child: Text(value,
+                                                textAlign: TextAlign.right),
+                                          ),
                                         ),
                                 ],
                               ),
@@ -219,14 +206,17 @@ class RoomDetail extends StatelessWidget {
                             // SizedBox(
                             //   height: 3.h,
                             // ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                name,
-                                style: const TextStyle(
-                                    color: fontColor,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w400),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  name,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                      color: fontColor,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w400),
+                                ),
                               ),
                             ),
                           ],

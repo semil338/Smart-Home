@@ -4,6 +4,20 @@ import 'package:smart_home/view/home/bottom_navbar/bottom_bar_item.dart';
 import 'package:smart_home/view/home/home_page/home_page.dart';
 import 'package:smart_home/view/home/settings/settings.dart';
 import 'package:smart_home/widgets/widgets.dart';
+// import 'package:double_back_to_close/double_back_to_close.dart';
+
+// class MainScreen extends StatelessWidget {
+//   const MainScreen({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return const MaterialApp(
+
+//       home: DoubleBack(child: HomeBottomBar()),
+//       //DoubleBack(child: MyBottomNavigationBar()),
+//     );
+//   }
+// }
 
 class HomeBottomBar extends StatefulWidget {
   const HomeBottomBar({Key? key}) : super(key: key);
@@ -20,13 +34,10 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
     });
   }
 
-  // final String title = "Add";
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFecf5fb),
-
       extendBody: true,
       body: pages[index],
       bottomNavigationBar: TabBarMaterialWidget(
@@ -36,21 +47,6 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
         index: index,
         onChangedTab: onChangedTab,
       ),
-
-      // body: pages[index],
-      // bottomNavigationBar:  FABBottomAppBar(
-      //   centerItemText: 'A',
-      //   color: Colors.grey,
-      //   selectedColor: Colors.red,
-      //   notchedShape: CircularNotchedRectangle(),
-      //   onTabSelected: _selectedTab,
-      //   items: [
-      //     FABBottomAppBarItem(iconData: Icons.menu, text: 'This'),
-      //     FABBottomAppBarItem(iconData: Icons.layers, text: 'Is'),
-      //     FABBottomAppBarItem(iconData: Icons.dashboard, text: 'Bottom'),
-      //     FABBottomAppBarItem(iconData: Icons.info, text: 'Bar'),
-      //   ],
-      // ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
         onPressed: () => Navigator.push(context,

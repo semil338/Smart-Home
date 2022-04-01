@@ -11,10 +11,16 @@ abstract class AuthBase {
   Future<User?> signInWithEmailAndPassword(String email, String password);
   Future<User?> createAccountWithEmailAndPassword(
       String email, String password);
+  Future<void> updateEmail(String email);
 }
 
 class Auth extends AuthBase {
   final _firebaseAuth = FirebaseAuth.instance;
+
+  @override
+  Future<void> updateEmail(String email) async {
+    await _firebaseAuth.currentUser!.updateEmail(email);
+  }
 
   @override
   User? get user => _firebaseAuth.currentUser!;

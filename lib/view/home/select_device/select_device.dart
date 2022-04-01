@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 import 'package:smart_home/view/home/select_device/add_switch/add_switch.dart';
 import 'package:smart_home/models/category.dart';
 import 'package:smart_home/models/devices.dart';
@@ -21,15 +22,16 @@ class _SelectDeviceState extends State<SelectDevice> {
 
     Size size = MediaQuery.of(context).size;
 
-    final itemHeight = (size.height - kToolbarHeight - 24) * 0.42;
+    final itemHeight = (size.height - kToolbarHeight - 24) * 0.34;
     final itemWidth = size.width / 2;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
+        // leading: MenuWidget(),
         iconTheme: const IconThemeData(color: fontColor),
       ),
-      backgroundColor: const Color(0xFFecf5fb),
+      backgroundColor: bgColor,
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         child: Column(
@@ -106,7 +108,7 @@ class _SelectDeviceState extends State<SelectDevice> {
                                               const NeverScrollableScrollPhysics(),
                                           gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(
-                                            crossAxisCount: 4,
+                                            crossAxisCount: 3,
                                             childAspectRatio:
                                                 (itemWidth / itemHeight),
                                           ),
@@ -129,46 +131,59 @@ class _SelectDeviceState extends State<SelectDevice> {
                                                 );
                                               },
                                               child: Container(
+                                                // color: Colors.red,
                                                 margin:
                                                     const EdgeInsets.symmetric(
                                                         horizontal: 5),
-                                                height: 100,
-                                                child: Column(
-                                                  children: [
-                                                    Container(
-                                                      height:
-                                                          size.height * 0.085,
-                                                      width: size.width * 0.15,
-                                                      decoration: BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      18)),
-                                                      child: CircleAvatar(
-                                                        backgroundColor:
-                                                            Colors.white,
-                                                        child:
-                                                            SvgPicture.network(
-                                                          deviceSnapshot
-                                                              .data![index1]
-                                                              .iconLink,
-                                                          color: kPrimaryColor,
+                                                // height: 100,
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Column(
+                                                    children: [
+                                                      Container(
+                                                        height:
+                                                            size.height * 0.085,
+                                                        width:
+                                                            size.width * 0.15,
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        18)),
+                                                        child: CircleAvatar(
+                                                          backgroundColor:
+                                                              Colors.white,
+                                                          child: SvgPicture
+                                                              .network(
+                                                            deviceSnapshot
+                                                                .data![index1]
+                                                                .iconLink,
+                                                            color:
+                                                                kPrimaryColor,
+                                                            width: size.width *
+                                                                0.08,
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                    const SizedBox(height: 10),
-                                                    Expanded(
-                                                      child: Text(
-                                                        deviceSnapshot
-                                                            .data![index1].name,
-                                                        style: const TextStyle(
-                                                            fontSize: 14,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w500),
+                                                      const SizedBox(
+                                                          height: 10),
+                                                      Expanded(
+                                                        child: Text(
+                                                          deviceSnapshot
+                                                              .data![index1]
+                                                              .name,
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: TextStyle(
+                                                              fontSize: 9.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                             );

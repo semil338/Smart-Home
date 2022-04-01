@@ -6,13 +6,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_home/landing.dart';
 import 'package:smart_home/services/auth.dart';
 import 'package:smart_home/services/database.dart';
+import 'package:smart_home/services/local_notification.dart';
 import 'package:smart_home/services/realtime.dart';
 import 'package:smart_home/view/intro_screen/intro_screen.dart';
 import 'package:sizer/sizer.dart';
 
 int? isViewed;
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  LocalNotificationService.initialize();
   await Firebase.initializeApp();
   SharedPreferences pref = await SharedPreferences.getInstance();
   isViewed = pref.getInt("onBoard");

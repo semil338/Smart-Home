@@ -13,18 +13,24 @@ class _NotificationState extends State<Notifications> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text(
+          "Notifications",
+          style: TextStyle(color: fontColor),
+        ),
+        centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: fontColor),
+        // leading: MenuWidget(),
       ),
-      backgroundColor: const Color(0xFFecf5fb),
+      backgroundColor: bgColor,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Center(
               child: Icon(
             Icons.notifications_sharp,
-            size: 200,
+            size: 150,
             color: fontColor.withOpacity(0.8),
           )),
           const Text(
