@@ -18,65 +18,6 @@ class _SignInState extends State<SignIn> {
     super.initState();
   }
 
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     body: Consumer<SignInModel>(
-  //       builder: (context, model, _) => SingleChildScrollView(
-  //           child: ConstrainedBox(
-  //         constraints:
-  //             BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
-  //         child: Stack(
-  //           children: [
-  //             Container(
-  //               height: double.infinity,
-  //               width: double.infinity,
-  //               decoration: const BoxDecoration(
-  //                   image: DecorationImage(
-  //                 // filterQuality: FilterQuality.high,
-  //                 image: NetworkImage(
-  //                     "https://images.unsplash.com/photo-1523755231516-e43fd2e8dca5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"),
-  //                 fit: BoxFit.cover,
-  //               )),
-  //             ),
-  //             Container(
-  //               width: 350,
-  //               height: 200,
-  //               decoration: BoxDecoration(image: DecorationImage(image: bgimg)),
-  //             ),
-  //             Padding(
-  //               padding: const EdgeInsets.only(top: 130),
-  //               child: Opacity(
-  //                   opacity: model.isLoading ? 0.4 : 1,
-  //                   child: AbsorbPointer(
-  //                       absorbing: model.isLoading,
-  //                       child: SafeArea(
-  //                         // padding: const EdgeInsets.all(25.0),
-  //                         child: Container(
-  //                           padding: const EdgeInsets.all(25),
-  //                           decoration: BoxDecoration(
-  //                               color: Colors.white.withOpacity(0.8),
-  //                               borderRadius: const BorderRadius.only(
-  //                                   topLeft: Radius.circular(60),
-  //                                   topRight: Radius.circular(60))),
-  //                           child: Column(
-  //                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                             crossAxisAlignment: CrossAxisAlignment.stretch,
-  //                             children: [
-  //                               _buildForm(context, model),
-  //                               _buildButtons(context, model),
-  //                             ],
-  //                           ),
-  //                         ),
-  //                       ))),
-  //             ),
-  //             showLoading(model),
-  //           ],
-  //         ),
-  //       )),
-  //     ),
-  //   );
-  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -14,11 +14,6 @@ class LocalNotificationService {
 
     _notificationsPlugin.initialize(
       initializationSettings,
-      //  onSelectNotification: (String? route) async {
-      //   if (route != null) {
-      //     Navigator.of(context).pushNamed(route);
-      //   }
-      // }
     );
   }
 

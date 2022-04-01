@@ -4,20 +4,6 @@ import 'package:smart_home/view/home/bottom_navbar/bottom_bar_item.dart';
 import 'package:smart_home/view/home/home_page/home_page.dart';
 import 'package:smart_home/view/home/settings/settings.dart';
 import 'package:smart_home/widgets/widgets.dart';
-// import 'package:double_back_to_close/double_back_to_close.dart';
-
-// class MainScreen extends StatelessWidget {
-//   const MainScreen({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return const MaterialApp(
-
-//       home: DoubleBack(child: HomeBottomBar()),
-//       //DoubleBack(child: MyBottomNavigationBar()),
-//     );
-//   }
-// }
 
 class HomeBottomBar extends StatefulWidget {
   const HomeBottomBar({Key? key}) : super(key: key);

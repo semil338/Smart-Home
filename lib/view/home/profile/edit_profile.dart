@@ -98,7 +98,6 @@ class _EditProfileState extends State<EditProfile> {
           _upload(id);
         }
         try {
-          auth.updateEmail(emailController.text);
           db.updateProfile(
             uId: id,
             name: nameController.text,

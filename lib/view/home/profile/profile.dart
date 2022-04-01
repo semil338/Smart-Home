@@ -234,20 +234,12 @@ class _ProfileState extends State<Profile> {
               if (snapshot.connectionState == ConnectionState.active) {
                 return Expanded(
                   child: TextField(
-                    // textAlign: TextAlign.center,
                     decoration: const InputDecoration(border: InputBorder.none),
                     enabled: false,
                     controller: TextEditingController(
                       text: snapshot.data!.name,
                     ),
                   ),
-                  /*Text(
-                      snapshot.data!.name,
-                      style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black54),
-                    ),*/
                 );
               } else if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Text("");
@@ -281,13 +273,6 @@ class _ProfileState extends State<Profile> {
                     controller:
                         TextEditingController(text: snapshot.data!.email),
                   ),
-                  /*Text(
-                      snapshot.data!.name,
-                      style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black54),
-                    ),*/
                 );
               } else if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Text("");
