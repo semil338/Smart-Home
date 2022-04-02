@@ -1,6 +1,9 @@
-# smart_home
+# Smart Home
 
-A new Flutter project.
+Smart Home is a mobile application that lets you control your home appliances
+from anywhere in the world via the internet. The application is linked to Firebase,
+and when the value is changed, the devices respond appropriately.
+
 
 ## Getting Started
 
